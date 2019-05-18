@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="grade">
+        <p>{{grade}}</p>
+        <select v-model="sex">
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+           
+        </select>
+        <p>你选择的城市是:{{sex==1?"北京":"上海"}}</p>
+        <input type="text" v-model="grade">
+        <div>你现在的分数是:{{grade}}</div>
+
+        <div v-if="grade>=90">你很优秀</div>
+        <div v-else-if="grade>=80 && grade<90">你很不错</div>
+        <div v-else-if="grade>=60 && grade<80">你还好</div>
+        <div v-else>你需要加油了</div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            grade: 99,
+            sex: 1,
+        },
+
+    })
+</script>
+
+</html>

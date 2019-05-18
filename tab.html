@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        header {
+            height: 50px;
+            width: 100%;
+            display: flex;
+            background: yellowgreen;
+        }
+        
+        header span {
+            height: 50px;
+            width: 50%;
+            line-height: 50px;
+            text-align: center;
+        }
+        
+        header span.active {
+            background: deepskyblue;
+        }
+        
+        ul li {
+            line-height: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <span v-for="(item,index) in list" :class="[{'active':index==ind},'cur']" @click="clickTitle(index)">{{item.title}}</span>
+
+        </header>
+        <ul>
+            <li v-for="(item,index) in list[ind].data" :style="styleObj">{{item.text}}</li>
+        </ul>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue "></script>
+<script>
+    var vm = new Vue({
+        el: "#app ",
+        data: {
+            styleObj: {
+                color: "red",
+                fontWeight: "bold",
+            },
+            ind: 0,
+            list: [{
+                title: "推荐 ",
+                data: [{
+                    text: "今天又没成才 ",
+                }, {
+                    text: "吃饭睡觉打豆豆 ",
+                }, {
+                    text: "明天你成才,但是周六才能坐下来 "
+                }]
+
+            }, {
+                title: "列表 ",
+                data: [{
+                    text: "努力考试,加油,加油,加油 ",
+                }, {
+                    text: "心之所向,铸我无双 ",
+                }, {
+                    text: "希望我们的辅导员能够以后不要再带我们了 ",
+
+                }]
+
+            }],
+        },
+
+        methods: {
+            clickTitle(ind) {
+                this.ind = ind;
+
+            }
+        }
+    })
+</script>
+
+</html>

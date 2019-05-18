@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">{{grade}}</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        template: "<h3>999</h3>",
+        data: {
+            grade: "1611c",
+        },
+        beforeCreate() {
+            console.log("beforeCreate")
+            console.log(this.$el, this.$data, this.grade)
+        },
+        created() {
+            console.log("created")
+            console.log(this.$el, this.$data, this.grade)
+
+        },
+        beforeMount() {
+            console.log("beforeMount")
+            console.log(this.$el, this.$data, this.grade)
+
+        },
+        mounted() {
+            console.log("mounted")
+            console.log(this.$el, this.$data, this.grade)
+
+        },
+        beforeUpdate() {
+            console.log("beforeUpdate")
+            console.log(this.$el, this.$data, this.grade)
+
+        },
+        befored() {
+            console.log("befored")
+            console.log(this.$el, this.$data, this.grade)
+
+        },
+
+
+    })
+    vm.$mount("#app")
+</script>
+
+</html>

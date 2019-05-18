@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        
+        #app {
+            height: 100%;
+            width: 100%;
+            background: #eee;
+        }
+        
+        .header {
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            justify-content: space-around
+        }
+        
+        .header .active {
+            color: red
+        }
+        
+        .box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        dl {
+            height: 120px;
+            background: #fff;
+            margin: 10px;
+            display: flex;
+            flex-direction: row
+        }
+        
+        dl dt {
+            width: 120px;
+            height: 100%;
+            margin-right: 10px;
+        }
+        
+        dl dt img {
+            width: 100%;
+            height: 100%;
+        }
+        
+        dl dd {
+            flex: 1;
+        }
+        
+        dl dd p {
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <span v-for="(val,index) in typeArr" :key="index" :class="{'active':index==ind}" @click="check(val,index)">{{val.name}}</span>
+        </div>
+        <div class="box">
+            <dl v-for="(val,index) in list" :key="index">
+                <dt>
+                    <img :src="val.Image" alt="">
+                </dt>
+                <dd>
+                    <p class="name">{{val.name}}</p>
+                    <p class="Introduction">{{val.Introduction}}</p>
+                    <p class="NowPromo">{{val.NowPromo}}</p>
+                    <p class="Price">金额:{{val.Price}}</p>
+                    <p class="Sales">销售量:{{val.Sales}}</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        new Vue({
+                el: "#app",
+                data: {
+                    typeArr: [{
+                        name: "全部",
+                        type: ""
+                    }, {
+                        name: "销量",
+                        type: "Sales"
+                    }, {
+                        name: "价格",
+                        type: "Price"
+                    }],
+                    ind: 0,
+                    list: [{
+                        "Name": "忘情巴黎",
+                        "Introduction": "33枝红玫瑰",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9012009.jpg",
+                        "Price": 292,
+                        "LinePrice": 383,
+                        "Sales": "75000",
+                        "NowPromo": ["浪漫唯美 女神挚爱"],
+                        "ItemCode": "9012009"
+                    }, {
+                        "Name": "真爱如初",
+                        "Introduction": "雪山玫瑰11枝、深紫色勿忘我0.3扎",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9010947.jpg",
+                        "Price": 185,
+                        "LinePrice": 209,
+                        "Sales": "69000",
+                        "NowPromo": ["已优惠30元"],
+                        "ItemCode": "9010947"
+                    }, {
+                        "Name": "一心一意",
+                        "Introduction": "玫瑰11枝，粉色勿忘我0.3扎",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9010011.jpg",
+                        "Price": 126,
+                        "LinePrice": 139,
+                        "Sales": "77000",
+                        "NowPromo": ["已优惠10元"],
+                        "ItemCode": "9010011"
+                    }, {
+                        "Name": "淳美之爱",
+                        "Introduction": "戴安娜粉玫瑰33枝，白色相思梅5枝",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9010869.jpg",
+                        "Price": 300,
+                        "LinePrice": 392,
+                        "Sales": "16000",
+                        "NowPromo": ["已优惠30元"],
+                        "NowPromo": null,
+                        "ItemCode": "9010869"
+                    }, {
+                        "Name": "恋恋情深",
+                        "Introduction": "11枝香槟玫瑰，白百合2枝",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9012243.jpg",
+                        "Price": 195,
+                        "LinePrice": 255,
+                        "NowPromo": ["已优惠30元"],
+                        "Sales": "67000",
+                        "NowPromo": null,
+                        "ItemCode": "9012243"
+                    }, {
+                        "Name": "一心一意+德芙心语巧克力特价组合套装",
+                        "Introduction": "玫瑰11枝，粉色勿忘我0.3扎",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9092118.jpg",
+                        "Price": 205,
+                        "NowPromo": ["已优惠30元"],
+                        "LinePrice": 246,
+                        "Sales": "7411",
+                        "NowPromo": null,
+                        "ItemCode": "9092118"
+                    }, {
+                        "Name": "恋恋情深＋心相印蛋糕",
+                        "Introduction": "11枝香槟玫瑰，白百合2枝",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9092116.jpg",
+                        "Price": 322,
+                        "LinePrice": 369,
+                        "Sales": "61000",
+                        "NowPromo": ["特价！"],
+                        "ItemCode": "9092116"
+                    }, {
+                        "Name": "浪漫缤纷",
+                        "Introduction": "戴安娜粉玫瑰50枝",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9012041.jpg",
+                        "Price": 371,
+                        "LinePrice": 486,
+                        "Sales": "6316",
+                        "NowPromo": ["已优惠30元"],
+                        "NowPromo": null,
+                        "ItemCode": "9012041"
+                    }, {
+                        "Name": "一往情深",
+                        "Introduction": "精品玫瑰礼盒:19枝红玫瑰，勿忘我适量",
+                        "Image": "https://img01.hua.com/uploadpic/newpic/9010966.jpg",
+                        "Price": 244,
+                        "LinePrice": 315,
+                        "Sales": "80000",
+                        "NowPromo": ["经典爆款，年销售冠军！"],
+                        "ItemCode": "9010966"
+                    }]
+                },
+                methods: {
+                    check(val, index) {
+                        this.ind = index;
+                        this.list = JSON.parse(JSON.stringify(this.list)).sort((a, b) => {
+                            return a[val.type] - b[val.type]
+                        })
+                    }
+                }
+            }
+
+        )
+    </script>
+</body>
+
+</html>

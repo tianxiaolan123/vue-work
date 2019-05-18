@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #app {
+            height: 500px;
+            width: 800px;
+        }
+        
+        h2 {
+            line-height: 30px;
+            margin: 8px 100px;
+        }
+        
+        .box {
+            height: 100px;
+            width: 100px;
+            background: dodgerblue;
+            margin: 5px 100px;
+        }
+        
+        button {
+            height: 30px;
+            width: 50px;
+            line-height: 30px;
+            text-align: center;
+            margin: 5px 100px;
+        }
+        
+        img {
+            height: 200px;
+            width: 200px;
+        }
+        
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <h4>{{grade}}</h4>
+        <h4>{{count}}</h4>
+        <h4>{{name}}</h4>
+        <!-- <button v-on:click="flag=!flag">点击</button> -->
+        <div @click.self.right.prevent="btnClick">
+            <button @click.self="flag=!flag">点击</button>
+            <div class="box" v-show="flag" v-cloak></div>
+        </div>
+        <a href="http://www.baidu.com" @click.prevent.once>跳转</a>
+        <input type="text" @keyup.13="num++">
+        <span>{{num}}</span>
+        <!-- 数组:key唯一标识-->
+        <ul>
+            <li v-for="(item,index,key) in list" :key="index">
+                <!-- {{item}} {{index}} {{key}} -->
+                <img v-bind:src="item.src" alt="">
+                <a v-bind:href="item.href">{{list[0].title}}</a>
+            </li>
+        </ul>
+        <!-- 对象 -->
+        <div v-for="(val,key,index) in obj">
+            {{val}} - {{key}} - {{index}}
+        </div>
+
+        <!-- 数字 -->
+        <b v-for="(item,index) in 10">
+          {{item}} {{index}} 
+          <br>
+        </b>
+
+        <!-- 字符串 -->
+        <div v-for="(item,index) in grade">
+            {{item}} {{index}} {{key}}
+        </div>
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>
+
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    //v-html  //解析html 
+    //v-text  //解析内容跟 {{}}赋值一样
+    //事件 @clcik (简写)  v-on:click
+    //v-show 控制元素的显示隐藏
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            grade: "1701B",
+            count: 42,
+            name: "纪晓岚",
+            flag: false,
+            msg: "年后",
+            message: "出现承诺小程序",
+            num: 1,
+            obj: {
+                name: "田晓岚",
+                age: 18,
+                sex: "女",
+            },
+            list: [{
+                title: "图片一",
+                src: "http://img0.imgtn.bdimg.com/it/u=889120611,3801177793&fm=26&gp=0.jpg",
+                href: "http://www.toutiao.com",
+            }, {
+                title: "图片二",
+                src: "http://img.zcool.cn/community/01b078574706206ac72525ae0beaed.jpg@2o.jpg",
+                href: "http://www.baidu.com",
+            }]
+        },
+
+        methods: {
+            btnClick() {
+                console.log(111)
+            }
+        }
+    })
+    console.log(vm)
+</script>
+
+</html>

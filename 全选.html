@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        .check {
+            height: 20px;
+            width: 20px;
+            background: #ccc;
+            display: inline-block;
+        }
+        
+        ul li {
+            line-height: 2.4;
+        }
+        
+        ul li span {
+            margin-left: 8px;
+            font-size: 20px;
+        }
+        
+        div.quan {
+            position: relative;
+            left: 46px;
+        }
+        
+        div.quan span {
+            font-size: 18px;
+        }
+        
+        .active {
+            background: red;
+        }
+        
+        .likeFun,
+        .result {
+            margin-top: 16px;
+            font-size: 18px;
+            margin-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h3>选择你喜欢的明星 </h3>
+        <ul>
+            <li v-for="(item,index) in list">
+                <span :class="['check',{'active':item.flag}]" @click="btnClick(index)"></span>
+                <span>{{item.name}}</span>
+            </li>
+        </ul>
+        <div class="quan">
+            <span :class="['check',{'active':allFlag}]" @click="allFun"></span>
+            <span>全选</span>
+        </div>
+        <div class="likeFun"> 你喜欢的明星是:{{likeFun}}</div>
+        <div class="result">你现在的分数是:{{Total}}</div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue "></script>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            allFlag: false,
+            list: [{
+                name: "赵丽颖  ",
+                flag: false,
+            }, {
+                name: "李易峰  ",
+                flag: false,
+            }, {
+                name: "杨幂  ",
+                flag: false,
+            }, {
+                name: "杨洋  ",
+                flag: false,
+            }],
+            result: [{
+                name: "数学",
+                grade: 80,
+            }, {
+                name: "语文",
+                grade: 90,
+            }, {
+                name: "英语",
+                grade: 90,
+            }]
+        },
+        methods: {
+            btnClick(ind) {
+                this.list[ind].flag = !this.list[ind].flag;
+                this.allFlag = this.list.every(item => item.flag)
+
+            },
+            allFun() {
+                this.allFlag = !this.allFlag;
+                this.list.map(item => item.flag = this.allFlag)
+            }
+        },
+        computed: {
+            likeFun() {
+                return this.list.filter(item => item.flag).map(item1 => item1.name).join("")
+            },
+            Total() {
+                return this.result.reduce((prev, cur) => prev + cur.grade, 0)
+            }
+        }
+
+    })
+</script>
+
+</html>

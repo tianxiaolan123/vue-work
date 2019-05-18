@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="example">
+        <h3>计算属性</h3>
+        <input type="text" v-model="message">
+        <p>{{ message }}</p>
+        <p>{{ reversedMessage }}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue "></script>
+    <script>
+        //1.计算属性是可以实现数组翻转的
+        // 2.
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                message: 'Hello'
+            },
+            computed: {
+                reversedMessage: function() {
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
